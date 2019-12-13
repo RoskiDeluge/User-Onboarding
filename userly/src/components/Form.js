@@ -61,6 +61,14 @@ const UserForm = ({ values, errors, touched, status }) => {
         </label>
         <button type="submit">Submit</button>
       </Form>
+      {users.map(user => {
+        return (
+          <ul key={user.id}>
+            <li>Name: {user.name}</li>
+            <li>Email: {user.email}</li>
+          </ul>
+        );
+      })}
     </div>
   );
 
