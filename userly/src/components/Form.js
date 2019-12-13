@@ -14,7 +14,6 @@ const UserForm = ({ values, errors, touched, status }) => {
   return (
     <div>
       <Form>
-        {/* name, email, password, tos checkbox, submit */}
         <label htmlFor="name">
           Name
           <Field 
@@ -75,9 +74,8 @@ const UserForm = ({ values, errors, touched, status }) => {
 };
 
 const FormikUserForm = withFormik({
-  // props from <AnimalForm /> in app are in props param
+
     mapPropsToValues(props) {
-      // set initial state of form to value from parent component OR the initial value (after || )
       return {
         name: props.name || "",
         email: props.size || "",
@@ -88,7 +86,6 @@ const FormikUserForm = withFormik({
 
     validationSchema: Yup.object().shape({
       name: Yup.string().required("Name is required"),
-      // passing a string in required makes a custom inline error msg
       email: Yup.string().required("Email is required"),
       password: Yup.string().required("Password is required")
     }),
@@ -99,10 +96,7 @@ const FormikUserForm = withFormik({
         .post("https://reqres.in/api/users/", values)
         .then(res => {
           console.log("success", res);
-          // sends a status update through props in AnimalForm with value as res.data content
           setStatus(res.data);
-  
-          //clears form inputs, from FormikBag
           resetForm();
         })
         .catch(err => console.log(err.response));
